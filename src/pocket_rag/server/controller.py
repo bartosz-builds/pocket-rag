@@ -75,7 +75,7 @@ class MCPController:
         signal.signal(signal.SIGINT, MCPController.handle_shutdown_signal)
 
         # Setup FastMCP server and register per-folder tools
-        mcp = FastMCP("Local Private RAG")
+        mcp = FastMCP("Pocket RAG")
         self.register_inbox_tools(mcp)
 
         return mcp

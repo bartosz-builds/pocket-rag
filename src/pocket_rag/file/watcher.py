@@ -26,14 +26,6 @@ class FileWatcher(FileSystemEventHandler):
 
         file_path = Path(src_path)
         folder = file_path.parent
-        description_file = folder / "description.md"
-
-        if not description_file.exists():
-            print(
-                f"[Watcher] Skipping {file_path.name}: no description.md in {folder.name}",
-                file=sys.stderr,
-            )
-            return
 
         table_name = folder_name_to_table(folder.name)
         file_handler = self.file_handler.get_handler(src_path)
