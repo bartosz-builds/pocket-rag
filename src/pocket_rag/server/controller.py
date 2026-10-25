@@ -6,10 +6,10 @@ from pathlib import Path
 
 from fastmcp import FastMCP
 
-from local_mcp.config.config import INBOX_DIR
-from local_mcp.file.handler import PDFFileHandler
-from local_mcp.file.watcher import folder_name_to_table
-from local_mcp.rag.repository import VectorStoreRepository
+from pocket_rag.config.config import INBOX_DIR
+from pocket_rag.file.handler import PDFFileHandler
+from pocket_rag.file.watcher import folder_name_to_table
+from pocket_rag.rag.repository import VectorStoreRepository
 
 
 class MCPController:

@@ -1,10 +1,10 @@
 [project]
-name = "local-mcp"
+name = "pocket-rag"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 authors = [
-    { name = "Bartosz-D3V", email = "bartosz.d3v@gmail.com" }
+    { name = "Bartosz-builds", email = "bartosz.d3v@gmail.com" }
 ]
 requires-python = ">=3.13"
 dependencies = [
@@ -19,7 +19,7 @@ dependencies = [
 ]
 
 [project.scripts]
-local-mcp = "local_mcp:main"
+pocket-rag = "pocket_rag:main"
 
 [build-system]
 requires = ["uv_build>=0.12.5,<0.13.0"]

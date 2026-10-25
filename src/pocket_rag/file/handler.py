@@ -8,7 +8,7 @@ import requests
 from langchain_text_splitters import Language, RecursiveCharacterTextSplitter
 from pypdf import PdfReader
 
-from local_mcp.rag.repository import LanceDBAdapter
+from pocket_rag.rag.repository import LanceDBAdapter
 
 
 class FileHandler(ABC):

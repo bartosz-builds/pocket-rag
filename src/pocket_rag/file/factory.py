@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from local_mcp.file.handler import FileHandler, PDFFileHandler, URLHandler
+from pocket_rag.file.handler import FileHandler, PDFFileHandler, URLHandler
 
 
 class FileHandlerFactory:

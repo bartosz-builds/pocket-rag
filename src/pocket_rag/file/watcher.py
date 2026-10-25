@@ -3,7 +3,7 @@ from pathlib import Path
 
 from watchdog.events import FileSystemEvent, FileSystemEventHandler
 
-from local_mcp.file.factory import FileHandlerFactory
+from pocket_rag.file.factory import FileHandlerFactory
 
 
 def folder_name_to_table(folder_name: str) -> str:

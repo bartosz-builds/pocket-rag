@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 import requests
 
-from local_mcp.config.config import OLLAMA_HOST
+from pocket_rag.config.config import OLLAMA_HOST
 
 
 class EmbeddingProcessor(ABC):

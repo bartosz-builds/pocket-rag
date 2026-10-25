@@ -1,4 +1,4 @@
-from local_mcp import main
+from pocket_rag import main
 
 if __name__ == "__main__":
     main()

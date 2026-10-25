@@ -5,8 +5,8 @@ from pathlib import Path
 from lancedb.index import BTree
 from lancedb.rerankers import RRFReranker
 
-from local_mcp.models.vectorizer import EmbeddingProcessor
-from local_mcp.rag.lance import db
+from pocket_rag.models.vectorizer import EmbeddingProcessor
+from pocket_rag.rag.lance import db
 
 
 class VectorStoreRepository(ABC):

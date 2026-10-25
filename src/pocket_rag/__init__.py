@@ -2,13 +2,13 @@ import sys
 
 from watchdog.observers.polling import PollingObserver
 
-from local_mcp.config.config import INBOX_DIR
-from local_mcp.file.factory import FileHandlerFactory
-from local_mcp.file.handler import PDFFileHandler, URLHandler
-from local_mcp.file.watcher import FileWatcher
-from local_mcp.models.vectorizer import LLAMAProcessor
-from local_mcp.rag.repository import LanceDBAdapter
-from local_mcp.server.controller import MCPController
+from pocket_rag.config.config import INBOX_DIR
+from pocket_rag.file.factory import FileHandlerFactory
+from pocket_rag.file.handler import PDFFileHandler, URLHandler
+from pocket_rag.file.watcher import FileWatcher
+from pocket_rag.models.vectorizer import LLAMAProcessor
+from pocket_rag.rag.repository import LanceDBAdapter
+from pocket_rag.server.controller import MCPController
 
 
 def main():

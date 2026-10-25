@@ -5,7 +5,7 @@ from unittest.mock import MagicMock, patch
 
 import requests
 
-from local_mcp.file.handler import URLHandler
+from pocket_rag.file.handler import URLHandler
 
 
 class TestURLHandler(unittest.TestCase):
