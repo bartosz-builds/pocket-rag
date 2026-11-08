@@ -29,4 +29,10 @@ class FileWatcher(FileSystemEventHandler):
 
         table_name = folder_name_to_table(folder.name)
         file_handler = self.file_handler.get_handler(src_path)
+        if not file_handler:
+            print(
+                f"[Watcher] Filetype not supported. Skipping: {src_path}",
+                file=sys.stderr,
+            )
+            return
         file_handler.process(str(file_path), table_name)

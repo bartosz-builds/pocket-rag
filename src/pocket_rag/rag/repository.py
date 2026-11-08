@@ -20,6 +20,7 @@ class VectorStoreRepository(ABC):
         page_numbers: list[int],
         file_path: str,
         table_name: str,
+        embedding_texts: list[str] | None = None,
     ) -> None:
         """Save chunks and page numbers to the vector store."""
 
@@ -43,6 +44,7 @@ class LanceDBAdapter(VectorStoreRepository):
         page_numbers: list[int],
         file_path: str,
         table_name: str,
+        embedding_texts: list[str] | None = None,
     ) -> None:
 
         if not chunks:
@@ -54,7 +56,9 @@ class LanceDBAdapter(VectorStoreRepository):
         if not file_path or not table_name:
             raise ValueError("file_path and table_name must be provided.")
 
-        embeddings = self.embedding_processor.process_batch(chunks)
+        # Use enriched text for embedding if provided, store original text
+        texts_to_embed = embedding_texts if embedding_texts else chunks
+        embeddings = self.embedding_processor.process_batch(texts_to_embed)
 
         data = [
             {
@@ -111,7 +115,13 @@ class LanceDBAdapter(VectorStoreRepository):
 
         filename = Path(file_path).name
         table = db.open_table(table_name)
-        existing = table.search().where(f'source = "{filename}"').limit(1).to_list()
+        existing = (
+            table.search()
+            .where(f"source = '{filename}'")
+            .select(["source"])
+            .limit(1)
+            .to_list()
+        )
         return bool(existing)
 
     def search(self, table_name: str, query: str, top_k: int = 5) -> str:

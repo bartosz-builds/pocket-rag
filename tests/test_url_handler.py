@@ -77,7 +77,7 @@ class TestURLHandler(unittest.TestCase):
 
         try:
             with patch(
-                "local_mcp.file.handler.requests.get", side_effect=fake_get
+                "pocket_rag.file.handler.requests.get", side_effect=fake_get
             ) as mock_get:
                 handler.process(temp_path, "my_table")
 

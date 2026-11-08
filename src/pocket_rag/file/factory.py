@@ -12,10 +12,10 @@ class FileHandlerFactory:
             ".webloc": url_handler,
         }
 
-    def get_handler(self, src_path: str) -> FileHandler:
+    def get_handler(self, src_path: str) -> FileHandler | None:
         ext = Path(src_path).suffix.lower()
 
         if handler := self._extension_handlers.get(ext):
             return handler
 
-        raise ValueError(f"Unsupported file extension or format: {src_path}")
+        return None

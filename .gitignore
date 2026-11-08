@@ -16,3 +16,6 @@ lancedb_data/
 .DS_Store
 
 .idea/
+
+pdf_inbox/*
+!pdf_inbox/.gitkeep

@@ -15,7 +15,7 @@ class EmbeddingProcessor(ABC):
         pass
 
 
-class LLAMAProcessor(EmbeddingProcessor):
+class SnowflakeArctic(EmbeddingProcessor):
     def process(self, text: str) -> list[float | int]:
         return self.process_batch([text])[0]
 
@@ -31,7 +31,7 @@ class LLAMAProcessor(EmbeddingProcessor):
             response = requests.post(
                 f"{OLLAMA_HOST}/api/embed",
                 json={
-                    "model": "nomic-embed-text",
+                    "model": "snowflake-arctic-embed2",
                     "input": chunk,
                 },
             )

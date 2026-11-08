@@ -6,7 +6,7 @@ from pocket_rag.config.config import INBOX_DIR
 from pocket_rag.file.factory import FileHandlerFactory
 from pocket_rag.file.handler import PDFFileHandler, URLHandler
 from pocket_rag.file.watcher import FileWatcher
-from pocket_rag.models.vectorizer import LLAMAProcessor
+from pocket_rag.models.vectorizer import SnowflakeArctic
 from pocket_rag.rag.repository import LanceDBAdapter
 from pocket_rag.server.controller import MCPController
 
@@ -14,7 +14,7 @@ from pocket_rag.server.controller import MCPController
 def main():
     print("Starting PDF watcher...", file=sys.stderr)
     print(f"[*] Watching {INBOX_DIR} for new PDFs...", file=sys.stderr)
-    embedding_processor = LLAMAProcessor()
+    embedding_processor = SnowflakeArctic()
     repository = LanceDBAdapter(embedding_processor)
     pdf_file_handler = PDFFileHandler(repository)
     url_handler = URLHandler(repository)

@@ -3,10 +3,9 @@
 A Model Context Protocol (MCP) server that empowers your AI clients (like Claude Desktop or Cursor) to securely search through your local documents (PDFs, URLs, and text files) using a local vector database and Ollama embeddings—**100% offline and private**.
 
 ---
-
 ## ✨ Features
 
-- **🛡️ 100% Private & Local**: Powered by [Ollama](https://ollama.com/) (`nomic-embed-text`) and [LanceDB](https://lancedb.com/), keeping your sensitive documents entirely on your machine.
+- **🛡️ 100% Private & Local**: Powered by [Ollama](https://ollama.com/) (`snowflake-arctic`) and [LanceDB](https://lancedb.com/), keeping your sensitive documents entirely on your machine.
 - **⚡ Dynamic MCP Tools**: Automatically scans your `pdf_inbox/` directory and creates custom search tools per folder based on their `description.md`.
 - **👀 Auto-Sync File Watcher**: Drop new PDFs or URL reference files into your inbox folders, and they are automatically embedded and indexed in real time.
 - **🔌 Seamless MCP Integration**: Connects effortlessly with Claude Desktop, Cursor, or any other MCP-compliant client.
@@ -23,9 +22,9 @@ Before getting started, make sure you have the following installed:
 ### Setting up Ollama
 
 1. Download and install [Ollama](https://ollama.com/).
-2. Pull the required embedding model (`nomic-embed-text`):
+2. Pull the required embedding model (`snowflake-arctic`):
    ```bash
-   ollama pull nomic-embed-text
+   ollama pull snowflake-arctic-embed2
    ```
 3. Ensure Ollama is running in the background (usually starts automatically or via `ollama serve`).
 
@@ -39,18 +38,21 @@ Before getting started, make sure you have the following installed:
    cd pocket-rag
    uv sync
    ```
-
-2. **Add your documents to the Inbox:**
+2. **Run the app**
+   ```bash
+   uv run python main.py
+   ```
+3. **Add your documents to the Inbox:**
    Place your reference materials inside `pdf_inbox/` organized by folders. Each folder should contain:
    - Your PDF files or `.url` files.
    - **URL or Web Location files** (`.url`, `.webloc`) pointing to `llms.txt` endpoints to scrape and index them automatically.
    - A `description.md` explaining what the folder contains (this text is used as the description for the generated MCP search tool).
-
+   - When you drop your documents, `pocket-rag` will process them with ollama.
 ---
 
-## 🔌 Configuring Claude Desktop (MCP)
+## 🔌 Configuring harness (MCP)
 
-To let Claude use your local MCP server, edit your Claude configuration file.
+To let Claude Code/Codex/Opencode use your local MCP server, edit your harness configuration file.
 
 Add `pocket-rag` to your `mcpServers` dictionary (make sure to use the absolute path to your project and `uv`):
 
@@ -61,7 +63,7 @@ Add `pocket-rag` to your `mcpServers` dictionary (make sure to use the absolute 
       "command": "uv",
       "args": [
         "--directory",
-        "/path/to/your/pocket-rag",
+        "/absolute/path/to/your/pocket-rag",
         "run",
         "pocket-rag"
       ]
@@ -70,8 +72,7 @@ Add `pocket-rag` to your `mcpServers` dictionary (make sure to use the absolute 
 }
 ```
 
-Restart Claude Code, and it will automatically have access to your custom local search tools!
-
+Restart your harness - it will automatically have access to your custom local search tools!
 ---
 
 ## 💻 Running Manually / Development
@@ -81,6 +82,12 @@ You can test or run the server directly via standard I/O:
 ```bash
 uv run python main.py
 ```
+
+---
+
+## TODO:
+- Implement cross-encoder re-ranker using local models like `bge-reranker-v2-m3` or `qwen3-reranker`
+- Implement Query transformation (HyDE). [Whitepaper](https://arxiv.org/pdf/2511.19349)
 
 ---
 
