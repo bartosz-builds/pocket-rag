@@ -76,7 +76,7 @@ class LanceDBAdapter(VectorStoreRepository):
         # Write or append to the folder-specific LanceDB table
         if table_name in db.table_names():
             table = db.open_table(table_name)
-            table.delete(f'source = "{Path(file_path).name}"')
+            table.delete(f"source = '{Path(file_path).name}'")
             table.add(data)
         else:
             table = db.create_table(table_name, data=data)
